@@ -1,0 +1,210 @@
+* {
+    margin: 0; padding: 0;box-sizing:border-box;font-family:  Arial, sans-serif;}
+.align{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: rgb(213, 212, 212);
+    min-width: 1vw;
+}
+.align image{
+    height: 100px;
+    margin-right: 10px;
+}
+.logo{
+    float: left;    
+    width: 20vw;
+    height: auto;
+}
+.Govtlogo{
+    width: 8vw;
+   display: block;
+   margin: auto;
+}
+.kcrlogo{
+    /* margin-left: 20%;
+    float: right;
+    border-radius:50%;
+    width: 5vw;
+    height: auto; */
+    float: left;
+    width: 5vw;
+    height: auto;
+}
+.KTRlogo{
+    float: left;    
+    width: 5vw;
+    height: auto;
+    margin-left: 20px;
+}
+.AKlogo{
+    float: left;  
+    width: 5vw;
+    margin-left: 20px;
+}
+.showcase{
+    width: 100%;
+    height: 100vh;
+    background-color: #ccc;
+    display: flex;
+}
+.clip{
+ position: absolute;
+ right: 0;
+ bottom: 0;
+ filter: brightness(0.7);
+ z-index:-1;
+}
+@media(min-aspect-ratio:16/9){
+    .clip{
+        width: 100%; height: auto;
+    }
+}
+@media (max-aspect-ratio:16/9){
+    .clip{
+        width:auto;height:100%;
+    }
+}
+.TUIS{
+    text-align: left;
+    padding-left: 30px;
+    padding-top:10%;
+}
+.TUIS h1{
+    font-size:70px;
+    font-family: Poppins SemiBold;
+    color: white;
+    font-weight: 600;
+    transition: 0.5s;
+}
+.TUIS h1:hover{
+    -webkit-text-stroke: 3px rgb(25, 0, 255);
+    text-shadow: 0 0 10px rgba(255,255,255, 0.1);
+    
+}
+.TUIS a{
+    text-decoration: none;
+    display: inline-block;
+    color: #ffffff;
+    font-size: 24px;
+    border: 2px solid white;
+    padding: 14px 70px;
+    margin-top:50;
+
+}
+
+
+.form-box{
+    position: absolute;
+    top:42%;
+    width: 400px;
+    height: 370px;
+    right: 80px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h2{
+    font: size 2vh;
+    color: white;
+    text-align: center;
+}
+.inputbox{
+    position: relative;
+    margin: 30px 0;
+    width: 310px;
+    border-bottom: 2px solid white;
+}
+.inputbox label{
+    position: absolute;
+    top: 50%;
+    left:  5px;
+    transform: translatey(-50%);
+    color: #ffffff;
+    font-size: 1em;
+    pointer-events: none;
+    transition: .5s;
+}
+input:focus ~ label,
+input:valid ~ label{
+    top: -18px;
+}
+
+.inputbox input{
+    width: 100%;
+    height: 35px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding: 0 35px 0 5px;
+    color: rgb(255, 255, 255);
+}
+.form-box [type="submit"]{
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+.form-box p{
+    font-size: .9em;
+    color: white;
+    text-align: center;
+    margin: 25px 0 10px; 
+}
+.form-box p a{
+    text-decoration: none;
+    color: rgb(255, 0, 217);
+    font-weight: 600;
+}
+.form-box p a:hover{
+    text-decoration: underline;
+}
+
+
+/* .loginbox {
+    position: absolute;
+    top: 60%;
+    right: 10%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    opacity: 0.8;
+    backdrop-filter: blur(4px);
+}
+.loginbox h2{
+    text-align: center;
+    padding: 10px  0   0 0;
+}
+.loginbox form{
+    position: relative;
+    margin: 15px;
+  
+}
+.loginbox p{
+    text-align: center;
+    height: 25px;
+}
+
+.loginbox [type="submit"]
+ {
+    width: 250px;
+    border: none;
+    outline: none;
+    height: 30px;
+    background: blue;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 12px;     
+} */

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telangana Urban Information system</title>
+    <!--<link rel="icon" type="image/png" href="libs/frontend/images/TUIS.png">-->
+    <!-- CSS only -->
+    <link href="libs/bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="libs/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="libs/jquery.js"></script>
+
+    <script src="libs/v6.13.0-dist/ol.js"></script>
+    <link rel="stylesheet" href="libs/v6.13.0-dist/ol.css">
+
+    <script src="libs/ol-layerswitcher-master/dist/ol-layerswitcher.js"></script>
+    <link rel="stylesheet" href="libs/ol-layerswitcher-master/dist/ol-layerswitcher.css" />
+
+    <script src="libs/ol-geocoder/ol-geocoder.js"></script>
+    <link rel="stylesheet" href="libs/ol-geocoder/ol-geocoder.css" />
+
+    <script src="libs/ol-popup/ol-popup.js"></script>
+    <link rel="stylesheet" href="libs/ol-popup/ol-popup.css" />
+
+
+    <link rel="stylesheet" href="libs/jquery-ui-1.12.1/jquery-ui.css">
+    <script src="libs/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+    <script src="libs/jquery-ui-1.12.1/jquery-ui.js"></script>
+
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/file-saver"></script>
+
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+
+<body>
+      <button class="btn btn-primary togg" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+        &#9776;
+      </button>
+
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+<!------------------------------------------------- Left Panel ------------------------------------------------------------------------>
+          <div class="col-7 col-md-4 bg-light h-100 p-0 offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" style="background-color: blue;">
+          <div class="d-flex flex-column h-100 ">
+            
+            <!-- left panel logo row -->
+           <div class="container"> <div class="icon-layout " style="padding-bottom:4px ;position:sticky; font-size: 21px;text-align: center;"><a href="https://gajwelmunicipality.telangana.gov.in/" target="_blank" style="text-decoration: none;color: green; float: left;"><b>Property Tax Infomation System</b></a>
+            </div> <button type="button" class="btn-close text-reset clooose" data-bs-dismiss="offcanvas" style="float: right;" aria-label="Close"></button> <!-- navbar --> </div>
+                <div class="icon-layout" style="align-content:center ;display: flex;flex-wrap: wrap;justify-content: space-around;background-color: rgb(149, 148, 149);padding: 10px;font-size: 14px;height: 5%;color: aliceblue;">
+                    <div class="query"><a href="#" onclick="show_hide_querypanel()" id="query_panel_btn">Query</a></div>
+                    <div class="Layers" ><a href="#" onclick="wms_layers()" id="layers_info">Layers</a></div>
+                    <div class="info"><a href="#" onclick="info()" id="info_btn">Info</a></div>
+                    <div class="clear"><a href="#" onclick="clear_all()" id="clear_all">Clear</a></div>
+                    <div class="measure_option">
+                        <select id="additional_measuretype" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <option value="select" >Measure</option>
+                            <option value="length">Length</option>
+                            <option value="area">Area</option>
+                            <option value="clear">Clear</option>
+                        </select>
+                    </div>
+                    </div>
+             
+            
+                <div style="background-color: #ffffff;text-align: center;"><h4><b>Legend</b></h4></div>
+            
+            <!-- left panel legend -->
+            <div class="flex-grow-1 text-white overflow-auto h-100" style="background-color:#3f4494">
+                <div id="legend" class=" p-2"></div> 
+            </div>
+           
+            <!-- left panel explore bar -->
+            <div class="p-0" style="font-size:.9rem ; background:#B2EBF2;">
+                <div class="information" style="align-content:center;display: flex;flex-wrap: wrap;justify-content: space-around;background-color:rgb(154, 154, 154);padding: 3px;">
+                    <a href="https://nium.org.in/about-us/the-institution/" target="_blank"  style="text-decoration: none;color: rgb(255, 255, 255);"><b>About Us</b></a>
+                    <a href="https://nium.org.in/contact/" target="_blank"  style="text-decoration: none;color: rgb(255, 255, 255);"><b>Contact</b></a>
+                </div>
+            </div>
+            <!-- left panel footer -->
+            
+            <footer>
+                <div class="end" style="min-width: 1vw;align-content:center;align-items: center;display: flex;flex-wrap: wrap;justify-content: space-around;background-color:rgb(255, 255, 255);padding: 2px;">
+                    <a href="https://nium.org.in/" target="_blank"><img src="libs/frontend/images/Logo.png"></a>
+                    <P style="margin-bottom: 0px;">© 2023</P>
+                 <!-- <a href="https://www.telangana.gov.in/" target="_blank"><img src="libs/frontend/images/Govt logo.png" type="image/png"></a> -->
+                </div>
+            </footer>
+          </div>
+        </div>
+<!------------------------------------------------- END LEFT NAV BAR ----------------------------------------------------------->
+
+
+<!-- begin right panel -->
+      
+        <div  class="col p-0">
+        <div id="map" class="map">
+        <div id="scale_bar1"></div>
+
+        <select id="measuretype" class="form-select form-select-sm" aria-label=".form-select-sm example">
+            <option value="select">Select Measure option</option>
+            <option value="length">Length (LineString)</option>
+            <option value="area">Area (Polygon)</option>
+            <option value="clear">Clear Measurement</option>
+        </select>
+
+         </div>
+    
+        </div>
+    </div>
+    </div>
+    <div id="query_tab">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist" style="font-size:14px;">
+                <button class="nav-link active" id="nav-attributes-tab" data-bs-toggle="tab" data-bs-target="#nav-attributes" type="button" role="tab" aria-controls="nav-attributes" aria-selected="true">Select by Attributes</button>
+                <button class="nav-link" id="nav-draw-tab" data-bs-toggle="tab" data-bs-target="#nav-draw" type="button" role="tab" aria-controls="nav-draw" aria-selected="false">Select by Draw</button>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-attributes" role="tabpanel" aria-labelledby="nav-attributes-tab">
+                <label for="layer"><b>Select Layer</b></label>
+                <select id="layer" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option selected>Select Layer</option>
+                </select>
+                <br>
+                <label for="attributes"><b>Select Attribute</b></label>
+                <select id="attributes" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option selected>Select Attribute</option>
+                </select>
+                <br>
+                <label for="operator"><b>Select Operator</b></label>
+                <select id="operator" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option selected>Select Operator</option>
+                </select>
+                <br>
+                <label for="value">Enter Value</label>
+                <input type="text" class="form-control form-select-sm" id="value" name="value">
+                <br>
+                <button onclick="query()" type="button" class="btn btn-danger btn-sm">Load Layer</button>
+                <button id="exportButton" type="button" class="btn btn-danger btn-sm">Export to Excel</button>
+
+            </div>
+            <div class="tab-pane fade" id="nav-draw" role="tabpanel" aria-labelledby="nav-draw-tab">
+                <label for="layer1"><b>Select Layer</b></label>
+                <select id="layer1" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option selected>Select Layer</option>
+                </select>
+                <br>
+                <label for="draw_type"><b>Select Geometry Type</b></label>
+                <select id="draw_type" class="form-select form-select-sm" aria-label=".form-select-sm example">
+
+                    <option value="select">Select Shape</option>
+                    <option value="Square">Square</option>
+                    <option value="Box">Box</option>
+                    <option value="Polygon">Polygon</option>
+                    <option value="Star">Star</option>
+                    <option value="clear">Clear</option>
+                </select>
+
+
+            </div>
+          
+        </div>
+
+    </div>
+
+
+    <div id="table_data" style="font-size:15px;"></div>
+    <!-- Scrollable modal -->
+
+    <div class="modal fade" id="wms_layers_window" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Available WMS Layers</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table id="table_wms_layers" class="table table-hover" style="font-size:15px;">
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="close_wms_window()" type="button" id="close_wms_window"btn btn-secondary btn-sm data-bs-dismiss="modal">Close</button>
+                    <button onclick="add_layer()" type="button" id="add_map_btn" class="btn btn-primary btn-sm">Add Layer to Map</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+
+
+
+<script src="map.js"></script>
+
+</body>
+
+</html>

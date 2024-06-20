@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+     <title>Telangana Urban Information System</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" type="text/css" href="libs/frontend/css/style.css">
+    <!-- <link rel="icon" type="image/png" href="libs/frontend/images/TUIS.png">-->
+    </head>
+    <header>
+        <div class="row">
+        <div class="align">
+            <a href="https://nium.org.in" target="_blank" > <img src="libs/frontend/images/Logo.png" class="logo"></a>
+            <a href="https://telangana.gov.in" target="_blank"><img src="libs/frontend/images/Govt logo.png" class="Govtlogo"></a>
+
+            <div class="align">
+                <img src="libs/frontend/images/AK.png" class="AKlogo">
+            </div>
+        </div>
+        </div>
+    </header>
+        <body>
+                <video autoplay loop muted plays-inline class="clip">
+                    <source src="libs/frontend/css/bg.mp4" type="video/mp4">
+                </video>
+                <!-- <video src="libs/frontend/css/bg.mp4" muted loop autoplay></video> -->
+                <div class="TUIS">
+                 <h1>Telangana Urban <br>Information <br>System</h1>  
+                </div>
+          
+            <div class="form-box">
+                <div class="form-value">
+                 <script src="libs/frontend/js/loginbox.js"></script>
+                 <form onsubmit="return false;">
+                    <h2>Login Here</h2>
+                    <div class="inputbox">
+                        <input type="text" id="username" name="username" place holder="Username" required>
+                        <label for="username">Username</label>    
+                    </div>
+                    <div class="inputbox">
+                        <input type="password" id="password" name="password" required>
+                        <label for="password">Password</label>    
+                    </div>
+                    <input type="submit" value="Login" onclick="validateForm()">
+                 </form>
+                 <p>Contact Us: <a href="mailto:admin@nium.org.in">admin@nium.org.in</a></p>
+                </div>
+            </div>
+            
+        </body>
+</html>
